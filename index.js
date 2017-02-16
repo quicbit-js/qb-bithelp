@@ -83,52 +83,58 @@ function code_point_char(cp) {
 function utfinfo(v, msg, opt) {
     opt = opt || {}
     var log = opt.log || console.log
-    var cp
-    if(typeof v === 'string') {
-        cp = v.codePointAt(0)
-    } else {
-        cp = v
+    v = code_points(v)
+    for(var i=0; i<v.length; i++) {
+        var cp = v[i]
+        log(code_point_char(cp))
+        log('code-point :  ' + str(byte4(cp), bits) + (msg ? ' | ' + msg : ''))
+        try {
+            var u8 = utf8(cp)
+            if(u8[0] || u8[1] || u8[2]) {
+                log('utf8       :  ' + str(utf8(cp), bits))
+            }
+        } catch(e) {}
+        try {
+            var u16 = utf16(cp)
+            if(u16[0] || u16[1]) {
+                log('utf16      :  ' + str(utf16(cp), bits))
+            }
+        } catch(e) {}
+        log('')
     }
-    log(code_point_char(cp))
-    log('code-point :  ' + str(byte4(cp), bits) + (msg ? ' | ' + msg : ''))
-    try {
-        var u8 = utf8(cp)
-        if(u8[0] || u8[1] || u8[2]) {
-            log('utf8       :  ' + str(utf8(cp), bits))
-        }
-    } catch(e) {}
-    try {
-        var u16 = utf16(cp)
-        if(u16[0] || u16[1]) {
-            log('utf16      :  ' + str(utf16(cp), bits))
-        }
-    } catch(e) {}
-    log('')
 }
 
 // output a single line of hex/bit information for each given character in a string - or code point or array of code points
 function bitinfo(v, msg, opt) {
     opt = opt || {}
     var log = opt.log || console.log
-    if(typeof v === 'number') {
-        v = [v]
-    } else if(typeof v === 'string') {
-        v = code_points(v)
-    }
+    v = code_points(v)
     for(var i=0; i<v.length; i++) {
         log('code-point :  ' + str(byte4(v[i]), bits) + ' | ' + (msg || code_point_char(v[i])) )
     }
 }
 
-// Return an array of code points for given string.
-function code_points(s) {
-    var a = [], i = 0
-    while(i < s.length) {
-        a[i] =  s.codePointAt(i)
-        i += a[i] > 0xFFFF ? 2 : 1   // handle surrogate pairs (code points that span 2 string positions)
+// Given a string or single code point, return an array of code-points.  Other types are returned as is.
+// (gives flexibility to other function inputs by given back an array of code points for other types)
+function code_points(v) {
+    var ret
+    switch(typeof v) {
+        case 'number':
+            ret = [v]
+            break
+        case 'string':
+            ret = []
+            var i = 0
+            while(i < v.length) {
+                ret[i] =  v.codePointAt(i)
+                i += ret[i] > 0xFFFF ? 2 : 1   // handle surrogate pairs (code points that span 2 string positions)
+            }
+            break
+        default:
+            ret = v
     }
     // v.forEach((c) => {if(c > 0x10FFFF) { throw Error('out of unicode range: ' + c)}})
-    return a
+    return ret
 }
 
 module.exports = {
