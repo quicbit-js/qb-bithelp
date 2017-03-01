@@ -6,7 +6,6 @@ function hex(bytes) {
     bytes.forEach(function(b) {
         parts.push(padleft(b.toString(16).toUpperCase(), '0', 2))
     })
-    while(parts.length < 4) { parts.unshift('00') }
     return parts.join('.')
 }
 
@@ -25,7 +24,7 @@ function byte4(v) {
 
 // Given 4 bytes, return a formatted hex and bits information string:
 //      0xFF  ->   '00.00.00.FF | 0000 0000 : 0000 0000 : 0000 0000 : 1111 1111'
-function str(b4) {
+function hex_and_bits(b4) {
     return hex(b4) + ' | ' + b4.map(bits).join(' : ')
 }
 
@@ -70,47 +69,45 @@ function code_point_char(cp) {
     return ret
 }
 
-// Output formatted bit information for raw, UTF-8 and UTF-16 encodings of a given code pointm integer or string (v).
-// Output UTF-8 and UTF-16 information only if values differ from raw code-point bits (i.e. UTF-8 is only logged
-// for characters above ASCII, and UTF-16 is only logged for characters with hi and low 16-bit surrogates).
-//
-//    binfo(0x10009)
-//    > 𐀉
-//    > code-point :  00.01.00.09 | 0000 0000 : 0000 0001 : 0000 0000 : 0000 1001
-//    > utf8       :  F0.90.80.89 | 1111 0000 : 1001 0000 : 1000 0000 : 1000 1001
-//    > utf16      :  D8.00.DC.09 | 1101 1000 : 0000 0000 : 1101 1100 : 0000 1001
-//
+// see readme
 function utfinfo(v, msg, opt) {
     opt = opt || {}
     var log = opt.log || console.log
     v = code_points(v)
+    msg = msg || ''
+    var code_points_for = v.length + ' code ' + (v.length === 1 ? 'point' : 'points') + ' for '
+    log( '==============================================================================' )
+    log( code_points_for + '" ' + String.fromCodePoint.apply(null, v) + ' ", ' + msg )
+    log( '    -----------' )
     for(var i=0; i<v.length; i++) {
         var cp = v[i]
-        log(code_point_char(cp))
-        log('code-point :  ' + str(byte4(cp), bits) + (msg ? ' | ' + msg : ''))
+        var countstr = '(' + (i+1) + '/' + v.length + ')'
+        log('    ' + countstr + ' " ' + code_point_char(cp) + ' ":')  // note: if we put this character on the output line, it can mess up column alignment
+        log('    point :  ' + hex_and_bits(byte4(cp), bits))
         try {
             var u8 = utf8(cp)
             if(u8[0] || u8[1] || u8[2]) {
-                log('utf8       :  ' + str(utf8(cp), bits))
+                log('    utf8  :  ' + hex_and_bits(utf8(cp), bits))
             }
         } catch(e) {}
         try {
             var u16 = utf16(cp)
             if(u16[0] || u16[1]) {
-                log('utf16      :  ' + str(utf16(cp), bits))
+                log('    utf16 :  ' + hex_and_bits(utf16(cp), bits))
             }
         } catch(e) {}
-        log('')
+        log( '    -----------' )
     }
 }
 
-// output a single line of hex/bit information for each given character in a string - or code point or array of code points
+// single line of code-point info see readme
 function bitinfo(v, msg, opt) {
     opt = opt || {}
     var log = opt.log || console.log
     v = code_points(v)
+    msg = msg ? ' : ' + msg : ''
     for(var i=0; i<v.length; i++) {
-        log('code-point :  ' + str(byte4(v[i]), bits) + ' | ' + (msg || code_point_char(v[i])) )
+        log('point :  ' + hex_and_bits(byte4(v[i]), bits) + ' | " ' + code_point_char(v[i]) + ' "' + msg )
     }
 }
 
@@ -138,13 +135,7 @@ function code_points(v) {
 }
 
 module.exports = {
-    bits:        bits,
-    bitinfo:     bitinfo,
-    byte4:       byte4,
-    code_points: code_points,
-    hex:         hex,
-    str:         str,
-    utf8:        utf8,
-    utf16:       utf16,
-    utfinfo:     utfinfo
+    bitinfo:      bitinfo,
+    code_points:  code_points,
+    utfinfo:      utfinfo
 }
