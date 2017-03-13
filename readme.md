@@ -1,5 +1,12 @@
 # qb-bithelp
 
+[![npm][npm-image]][npm-url]
+[![downloads][downloads-image]][npm-url]
+
+[npm-image]:       https://img.shields.io/npm/v/qb-bithelp.svg
+[downloads-image]: https://img.shields.io/npm/dm/qb-bithelp.svg
+[npm-url]:         https://npmjs.org/package/qb-bithelp
+
 Functions for viewing and understanding binary encodings.
 
 Install:
