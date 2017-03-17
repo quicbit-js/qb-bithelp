@@ -2,28 +2,19 @@
 
 [![npm][npm-image]][npm-url]
 [![downloads][downloads-image]][npm-url]
-
-[npm-image]:       https://img.shields.io/npm/v/qb-bithelp.svg
-[downloads-image]: https://img.shields.io/npm/dm/qb-bithelp.svg
-[npm-url]:         https://npmjs.org/package/qb-bithelp
-
-[![npm][npm-image]][npm-url]
-[![downloads][downloads-image]][npm-url]
 [![bitHound Dependencies][proddep-image]][proddep-link]
 [![dev dependencies][devdep-image]][devdep-link]
 [![code analysis][code-image]][code-link]
 
-
-[npm-image]:       https://img.shields.io/npm/v/test-kit.svg
-[downloads-image]: https://img.shields.io/npm/dm/test-kit.svg
-[npm-url]:         https://npmjs.org/package/test-kit
-
-[proddep-image]:   https://www.bithound.io/github/quicbit-js/test-kit/badges/dependencies.svg
-[proddep-link]:    https://www.bithound.io/github/quicbit-js/test-kit/master/dependencies/npm
-[devdep-image]:    https://www.bithound.io/github/quicbit-js/test-kit/badges/devDependencies.svg
-[devdep-link]:     https://www.bithound.io/github/quicbit-js/test-kit/master/dependencies/npm
-[code-image]:      https://www.bithound.io/github/quicbit-js/test-kit/badges/code.svg
-[code-link]:       https://www.bithound.io/github/quicbit-js/test-kit
+[npm-image]:       https://img.shields.io/npm/v/qb-bithelp.svg
+[downloads-image]: https://img.shields.io/npm/dm/qb-bithelp.svg
+[npm-url]:         https://npmjs.org/package/qb-bithelp
+[proddep-image]:   https://www.bithound.io/github/quicbit-js/qb-bithelp/badges/dependencies.svg
+[proddep-link]:    https://www.bithound.io/github/quicbit-js/qb-bithelp/master/dependencies/npm
+[devdep-image]:    https://www.bithound.io/github/quicbit-js/qb-bithelp/badges/devDependencies.svg
+[devdep-link]:     https://www.bithound.io/github/quicbit-js/qb-bithelp/master/dependencies/npm
+[code-image]:      https://www.bithound.io/github/quicbit-js/qb-bithelp/badges/code.svg
+[code-link]:       https://www.bithound.io/github/quicbit-js/qb-bithelp
 
 
 Functions for viewing and understanding binary encodings.
