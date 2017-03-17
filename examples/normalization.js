@@ -15,8 +15,8 @@
 
 var info = require('.').utfinfo
 
-function normalize(s, form) {
-    info(s.normalize(form), 'form: ' + form)
+function normalize (s, form) {
+  info(s.normalize(form), 'form: ' + form)
 }
 
 // Initial string
@@ -32,7 +32,6 @@ var s = '\u1E9B\u0323'
 normalize(s, 'NFC')
 normalize(s)
 
-
 // Canonically-decomposed form (NFD)
 
 // U+017F: LATIN SMALL LETTER LONG S
@@ -40,12 +39,10 @@ normalize(s)
 // U+0307: COMBINING DOT ABOVE
 normalize(s, 'NFD')
 
-
 // Compatibly-composed (NFKC)
 
 // U+1E69: LATIN SMALL LETTER S WITH DOT BELOW AND DOT ABOVE
 normalize(s, 'NFKC')
-
 
 // Compatibly-decomposed (NFKD)
 
