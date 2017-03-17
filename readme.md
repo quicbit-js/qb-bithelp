@@ -23,12 +23,13 @@ Functions for viewing and understanding binary encodings.
 [qb-standard](http://github.com/quicbit-js/qb-standard) . 
 
 
-Install:
+# Install:
 
     npm install qb-bithelp
     
+# Usage
 
-# utfinfo( string_or_code_points, options )
+## utfinfo( string_or_code_points, options )
 
 Print hex/bit information for a raw (code-point), UTF-8, and UTF-16 encodings.  
 

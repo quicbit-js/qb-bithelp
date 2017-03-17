@@ -1,6 +1,6 @@
 {
   "name": "qb-bithelp",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "Functions for viewing and understanding binary encodings like UTF-8 and UTF-16",
   "homepage": "https://github.com/quicbit-js/qb-bithelp",
   "url": "https://github.com/quicbit-js/qb-bithelp/issues",
