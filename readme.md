@@ -19,6 +19,10 @@
 
 Functions for viewing and understanding binary encodings.
 
+**Complies with the 100% test coverage and minimum dependency requirements** of 
+[qb-standard](http://github.com/quicbit-js/qb-standard) . 
+
+
 Install:
 
     npm install qb-bithelp
