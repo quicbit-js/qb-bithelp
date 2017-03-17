@@ -86,3 +86,25 @@ test('bitinfo', function (t) {
     return hec.arg(0)
   })
 })
+
+test('console output', function(t) {
+    var hec = t.hector()
+    var clog = console.log
+    console.log = hec
+    bh.bitinfo('a')
+    bh.utfinfo('a')
+    console.log = clog
+    t.plan(1)
+    t.same(hec.arg(0),
+      [
+        'point :  00.00.00.61 | 0000 0000 : 0000 0000 : 0000 0000 : 0110 0001 | " a "',
+        '==============================================================================',
+        '1 code point for " a ", ',
+        '    -----------',
+        '    (1/1) " a ":',
+        '    point :  00.00.00.61 | 0000 0000 : 0000 0000 : 0000 0000 : 0110 0001',
+        '    -----------'
+      ]
+    )
+
+})
