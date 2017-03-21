@@ -13,7 +13,7 @@
 //     NFKD — Normalization Form Compatibility Decomposition.
 //
 
-var info = require('.').utfinfo
+var info = require('..').utfinfo
 
 function normalize (s, form) {
   info(s.normalize(form), 'form: ' + form)
