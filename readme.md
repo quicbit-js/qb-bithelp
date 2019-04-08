@@ -49,7 +49,7 @@ or string:
     
     bhelp.utfinfo('e',                  'simple ascii');
     bhelp.utfinfo('\u00E6',             'a ligature');
-    bhelp.utfinfo([ 0x10009, 0x10010 ], 'large (4-byte) characters' );
+    bhelp.utfinfo([ 0x10009, 0x10010 ], 'large (3-byte) characters' );
     bhelp.utfinfo('做法方。',            'some chinese');
     
 ... gives the output:
@@ -68,7 +68,7 @@ or string:
         utf8  :  00.00.C3.A6 | 0000 0000 : 0000 0000 : 1100 0011 : 1010 0110
         -----------
     ==============================================================================
-    2 code points for " 𐀉𐀐 ", large (4-byte) characters
+    2 code points for " 𐀉𐀐 ", large (3-byte) characters
         -----------
         (1/2) " 𐀉 ":
         point :  00.01.00.09 | 0000 0000 : 0000 0001 : 0000 0000 : 0000 1001
@@ -114,7 +114,7 @@ information:
 
     bhelp.bitinfo( 'abcé',                  'simple string');
     bhelp.bitinfo( '\u00E6',                'a ligature');
-    bhelp.bitinfo( [ 0x10009, 0x10010 ],    'large (4-byte) characters' );
+    bhelp.bitinfo( [ 0x10009, 0x10010 ],    'large (3-byte) characters' );
     bhelp.bitinfo( '做法方便上手。',          'some chinese' );
     
 ... gives the output:
@@ -124,8 +124,8 @@ information:
     point :  00.00.00.63 | 0000 0000 : 0000 0000 : 0000 0000 : 0110 0011 | " c " : simple string
     point :  00.00.00.E9 | 0000 0000 : 0000 0000 : 0000 0000 : 1110 1001 | " é " : simple string
     point :  00.00.00.E6 | 0000 0000 : 0000 0000 : 0000 0000 : 1110 0110 | " æ " : a ligature
-    point :  00.01.00.09 | 0000 0000 : 0000 0001 : 0000 0000 : 0000 1001 | " 𐀉 " : large (4-byte) characters
-    point :  00.01.00.10 | 0000 0000 : 0000 0001 : 0000 0000 : 0001 0000 | " 𐀐 " : large (4-byte) characters
+    point :  00.01.00.09 | 0000 0000 : 0000 0001 : 0000 0000 : 0000 1001 | " 𐀉 " : large (3-byte) characters
+    point :  00.01.00.10 | 0000 0000 : 0000 0001 : 0000 0000 : 0001 0000 | " 𐀐 " : large (3-byte) characters
     point :  00.00.50.5A | 0000 0000 : 0000 0000 : 0101 0000 : 0101 1010 | " 做 " : some chinese
     point :  00.00.6C.D5 | 0000 0000 : 0000 0000 : 0110 1100 : 1101 0101 | " 法 " : some chinese
     point :  00.00.65.B9 | 0000 0000 : 0000 0000 : 0110 0101 : 1011 1001 | " 方 " : some chinese
